@@ -36,6 +36,8 @@
   padding: 20rpx 0;
   line-height: 1.8;
   height: auto;
+  width: 100%;
+  text-align: left;
 }
 .about .content-extends{
   margin: 30rpx 0;

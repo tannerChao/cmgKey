@@ -1,33 +1,10 @@
 //logs.js
+const app = getApp();
 
 Page({
   data: {
     logs: [],
-    swipers: [
-      '../../assets/image/swiper_1.jpg', '../../assets/image/swiper_1.jpg', '../../assets/image/swiper_1.jpg'
-    ],
-    news:[
-        {
-          url:'../../assets/image/fengshan-1.jpg',
-          text:'关于我们',
-          page:'pages/index/index'
-        },
-        {
-          url:'../../assets/image/fengshan-2.jpg',
-          text:'产品中心',
-          page:'pages/index/index'
-        },
-        {
-          url:'../../assets/image/swiper_1.jpg',
-          text:'新闻中心',
-          page:'pages/index/index'
-        },
-        {
-          url:'../../assets/image/swiper_1.jpg',
-          text:'联系我们',
-          page:'pages/index/index'
-        }
-    ],
+    info: {},
     indicatorDots: false,
     vertical: false,
     autoplay: true,
@@ -43,11 +20,9 @@ Page({
     covers: [{
       latitude: 22.5911430000,
       longitude: 113.039986,
-      iconPath: '/image/location.png'
     }, {
       latitude: 22.5911430000,
       longitude: 113.039986,
-      iconPath: '/image/location.png'
     }],
     polygons: [{
       points: [
@@ -75,6 +50,7 @@ Page({
     enableScroll: true,
     enableRotate: false,
     drawPolygon: false,
+    scaleNum: 15,
   },
   getLocation() {
     const that = this
@@ -86,6 +62,58 @@ Page({
     })
   },
   onLoad: function () {
+    wx.showToast({
+      title: '加载中...',
+      mask: true,
+      icon: 'loading'
+    });
+    if(app.globalCompanyData.taobao){
+      this.setData({
+        info: app.globalCompanyData,
+      }) 
+    }else{
+      this.getCompany()
+    }
     this.getLocation()
-  }
+  },
+  getCompany: function(){
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'getCompany',
+      data: {
+        conditions:{},
+        functions: 'getInfo',  
+      },
+      success: res =>{
+        that.setData({
+          info:res.result.data[0]
+        })
+        app.globalCompanyData=res.result.data[0]
+      },
+      fail: err =>{
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
+  },
+  addScale: function(e){
+    let { scaleNum } = this.data;
+    if(scaleNum < 18){
+      scaleNum++;
+      this.setData({
+        scaleNum
+        }
+      )
+    }
+  },
+  jianScale: function(e){
+    let { scaleNum } = this.data;
+   if( scaleNum > 14){
+      scaleNum--;
+      this.setData(
+        {
+          scaleNum
+        }
+      )
+    }
+  },
 })

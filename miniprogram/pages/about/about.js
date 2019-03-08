@@ -1,10 +1,11 @@
 //logs.js
+const moment =require('../../utils/moment.min.js')
 
 Page({
   data: {
     logs: [],
     swipers: [
-      '../../images/common/swiper_1.jpg', '../../images/common/swiper_1.jpg', '../../images/common/swiper_1.jpg'
+      '../../images/common/swiper_1.jpg', '../../images/common/swiper_2.jpg', '../../images/common/swiper_3.jpg'
     ],
     news:[
         {
@@ -35,10 +36,43 @@ Page({
     duration: 500
   },
   onLoad: function () {
+
+    wx.showToast({
+      title: '加载中...',
+      mask: true,
+      icon: 'loading'
+    })
+
+    this.onGetNew();
+
     this.setData({
       logs: (wx.getStorageSync('logs') || []).map(log => {
         return util.formatTime(new Date(log))
       })
     })
-  }
+  },
+  onGetNew: function() {
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'getNews',
+      data: {
+        conditions:{category: 1},
+        functions: 'getNew',  
+      },
+      success: res =>{
+        let array = [];
+        if (res.result.data.length > 0) {
+          array = res.result.data.map(o => {
+            return Object.assign({}, o, { timeText: moment(o.time).format('YYYY-MM-DD')})
+          })
+        }
+        that.setData({
+          news: array
+        })
+      },
+      fail: err =>{
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
+  },
 })

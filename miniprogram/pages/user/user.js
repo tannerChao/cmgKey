@@ -5,7 +5,7 @@ const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
-    userInfo: {},
+    userInfo: {avatarUrl:'../../images/common/xsy.png'},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     
@@ -33,6 +33,7 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
+          console.log(res);
           app.globalData.userInfo = res.userInfo
           this.setData({
             userInfo: res.userInfo,
@@ -41,6 +42,14 @@ Page({
         }
       })
     }
+    if(app.globalCompanyData.taobao){
+      this.setData({
+        companyInfo: app.globalCompanyData,
+      }) 
+    }else{
+      this.getCompany()
+    }
+    console.log(this.data.userInfo);
   },
   getUserInfo: function(e) {
     console.log(e)
@@ -50,4 +59,29 @@ Page({
       hasUserInfo: true
     })
   },
+  getCompany: function(){
+    let that = this;
+    wx.cloud.callFunction({
+      name: 'getCompany',
+      data: {
+        conditions:{},
+        functions: 'getInfo',  
+      },
+      success: res =>{
+        that.setData({
+          companyInfo:res.result.data[0]
+        })
+        app.globalCompanyData=res.result.data[0]
+      },
+      fail: err =>{
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
+  },
+  taobao: function(){
+    console.log(1);
+    wx.navigateTo({
+      url: `/pages/web/web?url=${this.data.companyInfo.taobao}`
+    })
+  }
 })

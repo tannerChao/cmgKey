@@ -17,7 +17,7 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 500,
-    canIUse: wx.canIUse('button.open-type.onGetUserInfo'),
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     headerMenus: [
       {
@@ -60,7 +60,7 @@ Page({
       title: '加载中...',
       mask: true,
       icon: 'loading'
-    });
+    })
     this.onGetBaner();
     this.onGetProduct();
     this.onGetNew();
@@ -76,8 +76,7 @@ Page({
             success: res => {
               console.log(res);
               this.setData({
-                encryptedData: res.encryptedData,
-                signature: res.signature,
+                avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
               app.globalData.userInfo=res.userInfo
@@ -90,8 +89,6 @@ Page({
 
 
   onGetUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
     if (!this.logged && e.detail.userInfo) {
       this.setData({
         logged: true,

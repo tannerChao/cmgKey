@@ -1,5 +1,4 @@
 <!--index.wxml-->
-<block wx:if="{{userInfo.nickName}}" wx:key="{{index}}">
   <view class="home-container">
     <view class="home-swiper page-section page-section-spacing swiper">
       <swiper indicator-dots="{{indicatorDots}}"
@@ -59,17 +58,3 @@
     </view>
   <phone></phone>
 </view>
-</block>
-<view class="home-container-shouquan" wx:else if="{{canIUse}}">
-  <view class="shouquan-content">
-    <view class="kiki">
-      <image  src="../../images/common/kiki.png" mode="scaleToFill"></image>
-    </view>
-    <text>向其提供以下授权即可继续操作</text>
-  </view>
-  <view class="shouquan-footer">
-    <text class="shouquan-tips">获得你的公开信息（头像，昵称等）</text>
-    <button open-type="getUserInfo" type="primary" bindgetuserinfo="onGetUserInfo">请授权获取用户信息</button>
-  </view>
-</view>
-

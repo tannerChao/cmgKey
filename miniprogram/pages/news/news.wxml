@@ -2,9 +2,23 @@
     <block wx:if="{{news.length===0}}" wx:key="*this">
         <view class="no-more">
             <view class='box'>
-                <image src="../../assets/image/no-more.png" mode="scaleToFill"></image>
+                <image src="../../images/common/no-more.png" mode="scaleToFill"></image>
                 <text>没有更多</text>
             </view>
         </view>
-    </block>  
+    </block>
+    <block wx:if="{{news.length>0}}" wx:key="*this">
+        <view class="content-news theme-background">
+            <view class="content-news-content">
+              <view class="content-news-menu">
+                  <block wx:for="{{news}}" wx:key="*this">
+                      <view class="content-news-menu-li"> 
+                          <text class="title">{{item.title}}</text>
+                          <text class="time">{{item.timeText}}</text>
+                      </view>
+                  </block>
+              </view>    
+            </view>
+        </view>
+    </block>    
 </view>

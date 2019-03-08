@@ -1,17 +1,17 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/home/home",
     "pages/product/product",
     "pages/contact/contact",
     "pages/user/user",
+    "pages/web/web",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib"
-    
-
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -51,6 +51,10 @@
         "text": "个人中心"
       }
     ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   }
 }
-

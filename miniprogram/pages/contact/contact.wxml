@@ -2,10 +2,10 @@
 <view class="container contact-us">
      <view class="contact-us-content theme-background">
         <view class="content">
-            <text class="phone">132-1126-3025</text>
-            <text class="address">广东省江门市蓬江区杜阮镇长乔凤山工业区10号</text>
-            <text class="email">1366494128@qq.com</text>
-            <text class="email">https://shop3950qq7m59485.1688.com</text>
+            <text class="phone">手机：{{info.phone}}</text>
+            <text class="address">地址：  {{info.adress}}</text>
+            <text class="email">邮箱：    {{info.email}}</text>
+            <text class="email">网店：    {{info.taobao}}</text>
         </view> 
      </view>
      <view class="page-section page-section-gap">
@@ -14,7 +14,7 @@
           style="width: 100%; height: 300px;"
           latitude="{{latitude}}"
           longitude="{{longitude}}"
-          scale="{{18}}"
+          scale="{{scaleNum}}"
           markers="{{markers}}"
           covers="{{covers}}"
           enable-3D="{{enable3d}}"
@@ -25,6 +25,12 @@
           enable-scroll="{{enableScroll}}"
           polygons="{{drawPolygon ? polygons : []}}"
         >
+          <cover-view class='map-btn add' bindtap='addScale'>
+            <cover-image src='../../images/common/add.png' class='add'></cover-image>
+          </cover-view>
+          <cover-view class='map-btn jian' bindtap='jianScale'>
+            <cover-image src='../../images/common/jian.png' class='jian'></cover-image>
+          </cover-view>
         </map>
       </view>
       <phone></phone>

@@ -40,8 +40,8 @@
               <view class="content-news-menu">
                   <block wx:for="{{news}}" wx:key="*this">
                       <view class="content-news-menu-li"> 
-                          <text class="title">{{item.text}}</text>
-                          <text class="time">2019-2-22</text>
+                          <text class="title">{{item.title}}</text>
+                          <text class="time">{{item.timeText}}</text>
                       </view>
                   </block>
               </view>    
