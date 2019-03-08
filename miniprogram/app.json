@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/product/product",
+    "pages/contact/contact",
+    "pages/user/user",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib"
+    
+
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "金锁匙电器",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#1C82F8",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/tabBar/home.png",
+        "selectedIconPath": "images/tabBar/home_hover.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/product/product",
+        "iconPath": "images/tabBar/product.png",
+        "selectedIconPath": "images/tabBar/product_hover.png",
+        "text": "产品"
+      },
+      {
+        "pagePath": "pages/contact/contact",
+        "iconPath": "images/tabBar/tell.png",
+        "selectedIconPath": "images/tabBar/tell_hover.png",
+        "text": "联系我们"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "iconPath": "images/tabBar/usertar.png",
+        "selectedIconPath": "images/tabBar/usertar_hover.png",
+        "text": "个人中心"
+      }
+    ]
+  }
+}
+

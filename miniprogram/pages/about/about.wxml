@@ -1,0 +1,51 @@
+<!--logs.wxml-->
+<view class="container about">
+    <view class="header-baner">
+        <image  src="../../images/common/contcat_us.jpg" mode="scaleToFill"></image>
+    </view>
+    <view class="header-extands theme-background">
+        <text class="title">江门金锁匙电器制造有限公司</text>
+        <textarea class="content">江门金锁匙电器制作有限公司建立于2007年，是一家集加工生产销售：轴类五金制品，家用电器，微型电机，机械模具为一体的生产型企业，
+            公司拥有百分之70以上全自动化数控设备的生产车间，丰富的制造经验，
+            从2018年开始构建网商部，发展家电批发市场.社区电商的新模式。    
+        </textarea>
+    </view>
+    <view class="header-swiper page-section page-section-spacing swiper">
+        <swiper indicator-dots="{{indicatorDots}}"
+          autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block wx:for="{{swipers}}" wx:key="*this">
+            <swiper-item>
+                <image bindtap="bindViewTap" class="swipers-items" src="{{item}}" mode="scaleToFill"></image>
+            </swiper-item>  
+          </block>
+        </swiper>
+    </view>
+    <view class="content-extends theme-background">
+        <text class="title">核心价值</text>
+        <textarea class="content">策划：倾听客户的传播需求与目的，并将规划成适宜在空间中呈现的设计策略。
+            设计：拥有多位创意全面经验丰富的资深设计师，提供展览，活动策划，巡展，办公商业空间等全方位创意设计。
+            执行：精确务实的执行力，并不断探索新的材质和施工工艺加以运用，将客户的利益发挥的效果。
+            服务：专属的服务模式，针对个别专案采取团队服务模式，为客户提供专业细微的服务品质。
+            
+            我们成立至今,专业从事展览工作有超过10年的经验,提供全面的各种以展览服务给客户。
+        </textarea>
+    </view>
+
+    <block wx:if="{{news.length>0}}" wx:key="*this">
+        <view class="content-news theme-background">
+            <view class="content-news-header"> 
+              <text class="content-news-title-left">公司资讯</text>
+            </view>
+            <view class="content-news-content">
+              <view class="content-news-menu">
+                  <block wx:for="{{news}}" wx:key="*this">
+                      <view class="content-news-menu-li"> 
+                          <text class="title">{{item.text}}</text>
+                          <text class="time">2019-2-22</text>
+                      </view>
+                  </block>
+              </view>    
+            </view>
+        </view>
+    </block>  
+</view>

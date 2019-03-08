@@ -1,0 +1,60 @@
+<!--index.wxml-->
+<view class="home-container">
+  <view class="home-swiper page-section page-section-spacing swiper">
+    <swiper indicator-dots="{{indicatorDots}}"
+      autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{baner}}" wx:key="{{index}}">
+        <swiper-item>
+            <image bindtap="bindViewTap" class="home-swipers-items" src="{{item.fileid}}" mode="scaleToFill"></image>
+        </swiper-item>  
+      </block>
+    </swiper>
+  </view>
+  <view class="home-header-menu">
+      <block wx:for="{{headerMenus}}" wx:key="{{index}}" wx:for-index="cellindex">
+          <view class="home-header-menu-ul" bindtap="{{item.goPageFunction}}" data-pageUrl="{{item.pageUrl}}">
+            <view  class="li-btn li-btn-{{cellindex}}" >
+                <image  src="{{item.url}}" mode="scaleToFill"></image>
+            </view >
+            <text class="user-motto">{{item.text}}</text>
+        </view> 
+      </block>
+  </view>
+  <view class="hot-cakes">
+      <title title="热销产品"></title>
+      <view class="hot-cakes-content">
+        <view class="hot-cakes-menu">
+            <block wx:for="{{hotProduct}}" wx:key="{{index}}">
+                <view class="hot-cakes-menu-li">
+                    <image  src="{{item.fileid}}" mode="scaleToFill"></image>
+                    <text class="user-motto">{{item.name}}</text>
+                </view>
+            </block>
+        </view>    
+      </view>
+  </view>
+
+  <view class="brand-news">
+      <view class="brand-news-header"> 
+        <text class="brand-news-title-left">行业资讯</text>
+        <text class="brand-news-title-right">更多>></text>
+      </view>
+      <view class="brand-news-content">
+        <view class="brand-news-menu">
+            <block wx:for="{{new}}" wx:key="*this">
+                <view class="brand-news-menu-li">
+                    <view class="left">
+                        <image  src="{{item.logo}}" mode="scaleToFill"></image>
+                    </view>
+                    <view class="right">
+                        <text class="title">{{item.title}}</text>
+                        <text class="content">{{item.contentText}}</text>
+                        <text class="time">{{item.time}}</text>
+                    </view>
+                </view>
+            </block>
+        </view>    
+      </view>
+  </view>
+
+</view>

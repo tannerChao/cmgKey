@@ -1,0 +1,5 @@
+<view bindcustomevent="actionSheetTap" class="shadow">
+        <view class="phone">
+                <image class="image" src="../../assets/image/tell_hover.png" bindcustomevent="{{actionSheetTap}}"></image>
+        </view>
+</view>

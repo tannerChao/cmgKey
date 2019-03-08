@@ -1,0 +1,3 @@
+<view class="conpoment-title">
+    <text><text class="color-ddd pd-10">—</text> {{title}} <text class="color-ddd pd-10">—</text></text>
+</view>

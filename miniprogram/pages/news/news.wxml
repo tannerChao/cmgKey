@@ -1,0 +1,10 @@
+<view class="news">
+    <block wx:if="{{news.length===0}}" wx:key="*this">
+        <view class="no-more">
+            <view class='box'>
+                <image src="../../assets/image/no-more.png" mode="scaleToFill"></image>
+                <text>没有更多</text>
+            </view>
+        </view>
+    </block>  
+</view>

@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="product-container">
+    <view class="baner">
+        <image src="../../assets/image/product_baner.jpg" mode="scaleToFill"></image>
+    </view>
+    <view class="header">
+        <view class="header-input">
+            <input confirm-type="search" type="text" placeholder="请输入" />
+            <icon type="search" size="32rpx" color="#999999"></icon>
+        </view>
+    </view>
+    <view class="product-content">
+        <view class="product">
+            <title title="产品展示"></title>
+            <scroll-view class="product-menu" scroll-y = "{{true}}"  lower-threshold="300rpx" bindscrolltolower="{{loadMoreProduct}}"  bindscroll="{{loadMoreProduct}}">
+                <block wx:for="{{hotCakes}}" wx:key="*this" wx:for-index="cellindex">
+                    <view class="product-menu-ul" id="product-{{cellindex}}">
+                        <view class="product-menu-li">
+                            <image src="{{item.url}}" mode="scaleToFill"></image>
+                            <view class="right">
+                                <text class="title">{{item.text}}</text>
+                                <text class="content">{{item.text}}</text>
+                                <view class="details">
+                                    <view class="money">
+                                        <image src="../../assets/image/much.png" mode="scaleToFill"></image>
+                                        <text class="text">100</text>
+                                    </view>>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <!-- <view  class="load-more">
+                    ...加载更多
+                </view> -->
+            </scroll-view>
+        </view>
+    </view>
+    <!-- <view class="foot_text_extends">
+        <text>我们一直致力于通过专业、细致和全面的服务
+                为客户提供全球一流品质的仪器、设备
+                并度身定制系统的仪器解决方案
+        </text>
+    </view> -->
+    <phone></phone>
+</view>
