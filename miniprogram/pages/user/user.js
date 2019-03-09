@@ -42,6 +42,7 @@ Page({
         }
       })
     }
+    
     if(app.globalCompanyData.taobao){
       this.setData({
         companyInfo: app.globalCompanyData,
@@ -61,6 +62,10 @@ Page({
   },
   getCompany: function(){
     let that = this;
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     wx.cloud.callFunction({
       name: 'getCompany',
       data: {
@@ -71,10 +76,12 @@ Page({
         that.setData({
           companyInfo:res.result.data[0]
         })
-        app.globalCompanyData=res.result.data[0]
+        app.globalCompanyData=res.result.data[0];
+        wx.hideLoading()
       },
       fail: err =>{
-        console.error('[云函数] [login] 调用失败', err)
+        console.error('[云函数] [login] 调用失败', err);
+        wx.hideLoading()
       }
     })
   },
@@ -83,5 +90,11 @@ Page({
     wx.navigateTo({
       url: `/pages/web/web?url=${this.data.companyInfo.taobao}`
     })
-  }
+  },
+  onShareAppMessage: function (options) {
+    var that = this;
+    // 设置菜单中的转发按钮触发转发事件时的转发内容  
+    // 返回shareObj
+    return app.share;
+    }
 })

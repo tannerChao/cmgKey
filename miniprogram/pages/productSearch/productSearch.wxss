@@ -1,0 +1,126 @@
+.product-container{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-sizing: border-box;
+    background: #f4f4f4;
+    flex:1;
+
+}
+.product-container .header{
+    background: #ffffff;
+    padding: 30rpx;
+}
+.product-container  .baner{
+    font-size: 0;
+}
+.product-container  .baner image{
+    width: 100%;
+    height: 240rpx;
+}
+.product-container .header .header-input{
+    border: 1rpx solid #e4e4e4;
+    border-radius: 80rpx;
+    height: 80rpx;
+    font-size: 28rpx;
+    padding: 0 30rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center
+}
+.product-container .header .header-input input{
+    flex: 1;
+    display: block;
+}
+.product-container .product-content{
+    margin: 20rpx 0;
+    flex: 1;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.product{
+    flex: 1;
+    display: flex;
+    flex-direction: column
+}
+.product .product-uls{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 1100rpx;
+}
+.product .product-uls::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background-color: transparent;
+}
+/*定义滑块 内阴影+圆角*/
+.product .product-uls::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #e4e4e4;
+}
+.product .product-uls .lis{
+    background: #ffffff;
+    padding: 20rpx;
+    color: #666666;
+    display: flex;
+    margin: 0 0 20rpx 0;
+}
+
+.product .product-uls .lis:last-child{
+    border: none
+}
+.product .product-uls .lis .product-image{
+    width: 160rpx;
+    height: 160rpx;
+    margin: 0 20rpx 0 0;
+    font-size: 0;
+}
+.product .product-uls .lis .right{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+}
+.product-uls .lis .right .title{
+    color: #333333;
+    font-size: 28rpx;
+    height: 20rpx;
+}
+.product-uls .lis .right .content{
+    color: #999999;
+    flex: 1;
+    font-size: 24rpx;
+    line-height:1.3;
+    padding:20rpx 0;
+    text-align:left;
+
+}
+.product-uls .lis .right .details{
+    height: 40rpx;
+    display: flex;
+}
+.product-uls .lis .right .details .money{
+    margin: 0 20rpx 0 0;
+    vertical-align: text-top;
+    font-size: 24rpx;
+    color: "#1C82F8"
+}
+.product-uls .lis .right .details .numers{
+    vertical-align: text-top;
+    font-size: 24rpx;
+    color: "#1C82F8"
+}
+.product-uls .lis .right .details .money image, .product-uls .lis .right .details .numers image{
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: text-top;
+    margin: 0 10rpx 0 0 
+}

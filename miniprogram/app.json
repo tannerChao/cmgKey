@@ -4,8 +4,11 @@
     "pages/home/home",
     "pages/product/product",
     "pages/contact/contact",
+    "pages/about/about",
     "pages/user/user",
+    "pages/news/news",
     "pages/web/web",
+    "pages/productSearch/productSearch",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -14,9 +17,9 @@
     "pages/chooseLib/chooseLib"
   ],
   "window": {
-    "backgroundColor": "#F6F6F6",
+    "backgroundColor": "#ffffff",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTitleText": "金锁匙电器",
     "navigationBarTextStyle": "black"
   },

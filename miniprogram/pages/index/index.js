@@ -56,11 +56,11 @@ Page({
       })
       return
     }
-    wx.showToast({
-      title: '加载中...',
-      mask: true,
-      icon: 'loading'
-    });
+
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     this.onGetBaner();
     this.onGetProduct();
     this.onGetNew();
@@ -131,6 +131,7 @@ Page({
         that.setData({
           baner:res.result.data
         })
+        wx.hideLoading()
       },
       fail: err =>{
         console.error('[云函数] [login] 调用失败', err)
@@ -149,7 +150,8 @@ Page({
       success: res =>{
         that.setData({
           hotProduct:res.result.data
-        })
+        });
+        wx.hideLoading()
       },
       fail: err =>{
         console.error('[云函数] [login] 调用失败', err)
@@ -172,10 +174,10 @@ Page({
             return Object.assign({}, o, { timeText: moment(o.time).format('YYYY-MM-DD')})
           })
         }
-        console.log(array);
         that.setData({
           new: array
         })
+        wx.hideLoading()
       },
       fail: err =>{
         console.error('[云函数] [login] 调用失败', err)
@@ -247,4 +249,10 @@ Page({
       url: e.currentTarget.dataset.pageurl
     })
   },
+  onShareAppMessage: function (options) {
+    var that = this;
+    // 设置菜单中的转发按钮触发转发事件时的转发内容  
+    // 返回shareObj
+    return app.share;
+    }
 })

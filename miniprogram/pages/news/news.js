@@ -44,4 +44,10 @@ Page({
       }
     })
   },
+  onShareAppMessage: function (options) {
+    var that = this;
+    // 设置菜单中的转发按钮触发转发事件时的转发内容  
+    // 返回shareObj
+    return app.share;
+    }
 })

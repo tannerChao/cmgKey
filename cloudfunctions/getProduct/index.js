@@ -20,4 +20,30 @@ class Product {
       }
     });
   }
+  async ordinary(info) {
+    const db = cloud.database();
+    return await db.collection('product').where({
+      ...info
+    }).get({
+      success: res => {
+        return res;
+      }
+    });
+  }
+  async getAll(info) {
+    const db = cloud.database();
+    return await db.collection('product').get({
+      success: res => {
+        return res;
+      }
+    });
+  }
+  async getTpye() {
+    const db = cloud.database();
+    return await db.collection('productType').get({
+      success: res => {
+        return res;
+      }
+    });
+  }
 }

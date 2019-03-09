@@ -1,39 +1,49 @@
 <!--index.wxml-->
 <view class="product-container">
     <view class="baner">
-        <image src="../../assets/image/product_baner.jpg" mode="scaleToFill"></image>
+        <image src="../../images/common/product_baner.jpg" mode="widthFix" lazy-load></image>
     </view>
     <view class="header">
         <view class="header-input">
-            <input confirm-type="search" type="text" placeholder="请输入" />
+            <input confirm-type="search" type="text" placeholder="请输入" bindtap="search"/>
             <icon type="search" size="32rpx" color="#999999"></icon>
         </view>
     </view>
     <view class="product-content">
         <view class="product">
             <title title="产品展示"></title>
-            <scroll-view class="product-menu" scroll-y = "{{true}}"  lower-threshold="300rpx" bindscrolltolower="{{loadMoreProduct}}"  bindscroll="{{loadMoreProduct}}">
-                <block wx:for="{{hotCakes}}" wx:key="*this" wx:for-index="cellindex">
-                    <view class="product-menu-ul" id="product-{{cellindex}}">
-                        <view class="product-menu-li">
-                            <image src="{{item.url}}" mode="scaleToFill"></image>
-                            <view class="right">
-                                <text class="title">{{item.text}}</text>
-                                <text class="content">{{item.text}}</text>
-                                <view class="details">
-                                    <view class="money">
-                                        <image src="../../assets/image/much.png" mode="scaleToFill"></image>
-                                        <text class="text">100</text>
-                                    </view>>
-                                </view>
-                            </view>
+            <view class="product-type-menu">
+                <view class="product-type-uls">
+                    <block wx:for="{{listInfo}}" wx:key="{{index}}">
+                        <view class="{{listInfoState === item.category?'activeLis': 'lis' }}" bindtap="onClickProduct" data-id="{{item.category}}">
+                            <text>{{item.name}}</text>
                         </view>
-                    </view>
-                </block>
-                <!-- <view  class="load-more">
-                    ...加载更多
-                </view> -->
-            </scroll-view>
+                    </block>
+                </view>
+                <view class="product-content-menu">
+                    <scroll-view scroll-y class="product-uls" style="height: 660rpx">
+                        <block wx:for="{{info[listInfoState]}}" wx:key="{{index}}">
+                            <view class="lis">
+                                <image src="{{item.fileid}}" mode="aspectFill" class="product-image"></image>
+                                <view class="right">
+                                    <text class="title">{{item.title}}</text>
+                                    <text class="content">{{item.content}}</text>
+                                    <view class="details">
+                                        <view class="money">
+                                            <image src="../../images/common/jiage.png" mode="widthFix" lazy-load></image>
+                                            <text class="text">{{item.price}}</text>
+                                        </view>
+                                        <view class="numers">
+                                            <image src="../../images/common/numers.png" mode="widthFix" lazy-load></image>
+                                            <text class="text">{{item.sold}}</text>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>  
+                        </block>
+                    </scroll-view>
+                </view>
+            </view>
         </view>
     </view>
     <!-- <view class="foot_text_extends">

@@ -5,6 +5,8 @@
     justify-content: space-around;
     box-sizing: border-box;
     background: #f4f4f4;
+    flex:1;
+
 }
 .product-container .header{
     background: #ffffff;
@@ -33,8 +35,7 @@
     display: block;
 }
 .product-container .product-content{
-    margin: 30rpx 0;
-    background: #ffffff;
+    margin: 20rpx 0;
     flex: 1;
     overflow: hidden;
     height: 100%;
@@ -42,6 +43,112 @@
     flex-direction: column;
     
 }
+.product-container .product-content .product{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.product-type-menu{
+    flex: 1;
+    overflow: hidden;
+    justify-content: space-between;
+    display: flex;
+    margin: 20rpx 0 0 0;
+}
+.product-type-uls{
+    overflow: hidden;
+    background: #ffffff;
+    width: 160rpx;
+
+}
+.product-type-uls .lis{
+    width: 100%;
+    border-bottom: 1rpx solid #e4e4e4;
+}
+.product-type-uls .activeLis{
+    padding: 20rpx;
+    color: #666666;
+    display: flex;
+    background:  #f4f4f4;
+    border-left: 2px solid #1C82F8;
+}
+.product-type-uls .lis text, .product-type-uls .activeLis{
+    width: 100%;
+    text-align: center;
+    font-size: 28rpx;
+    color: #333333;
+    padding: 20rpx 0;
+    display: block;
+}
+
+.product-content-menu{
+    flex: 1;
+    padding: 0 20rpx;
+}
+.product-content-menu .product-uls{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.product-content-menu .product-uls .lis{
+    background: #ffffff;
+    padding: 20rpx;
+    color: #666666;
+    display: flex;
+    margin: 0 0 20rpx 0;
+}
+
+.product-content-menu .product-uls .lis:last-child{
+    border: none
+}
+.product-content-menu .product-uls .lis .product-image{
+    width: 160rpx;
+    height: 160rpx;
+    margin: 0 20rpx 0 0;
+    font-size: 0;
+}
+.product-content-menu .product-uls .lis .right{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+}
+.product-uls .lis .right .title{
+    color: #333333;
+    font-size: 28rpx;
+    height: 20rpx;
+}
+.product-uls .lis .right .content{
+    color: #999999;
+    flex: 1;
+    font-size: 24rpx;
+    line-height:1.3;
+    padding:20rpx 0;
+    text-align:left;
+
+}
+.product-uls .lis .right .details{
+    height: 40rpx;
+    display: flex;
+}
+.product-uls .lis .right .details .money{
+    margin: 0 20rpx 0 0;
+    vertical-align: text-top;
+    font-size: 24rpx;
+    color: "#1C82F8"
+}
+.product-uls .lis .right .details .numers{
+    vertical-align: text-top;
+    font-size: 24rpx;
+    color: "#1C82F8"
+}
+.product-uls .lis .right .details .money image, .product-uls .lis .right .details .numers image{
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: text-top;
+    margin: 0 10rpx 0 0 
+}
+
 .product-menu{
     height: 100%;
     flex: 1;
@@ -63,16 +170,16 @@
 {
     width: 6rpx;
     height: 6px;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 /*定义滚动条轨道 内阴影+圆角*/
-::-webkit-scrollbar-track
+.product-uls::-webkit-scrollbar-track
 {
     border-radius: 10px;
-    background-color: #ffffff;
+    background-color: transparent;
 }
 /*定义滑块 内阴影+圆角*/
-::-webkit-scrollbar-thumb
+.product-uls::-webkit-scrollbar-thumb
 {
     border-radius: 10px;
     background-color: #e4e4e4;
@@ -81,47 +188,7 @@
     width: 200rpx;
     height: 200rpx;
 }
-.product-menu-li .right{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    text-align: left;
-    margin: 0 0 0 30rpx;
-    font-size: 28rpx;
-    align-items: flex-start
-}
-.product-menu-li .right .title{
-    font-size: 32rpx;
-    color: #333333;
-    height: 40rpx;
-}
-.product-menu-li .right .content{
-    color: #999999;
-    flex: 1
-}
-.product-menu-li .right .details{
-    height: 40rpx;
-    display: flex;
 
-}
-.product-menu-li .right .details .money{
-    margin: 0 20rpx 0 0;
-    vertical-align: text-top;
-}
-.product-menu-li .right .details {
-    font-size: 0;
-}
-.product-menu-li .right .details image{
-    width: 36rpx;
-    height: 36rpx;
-    vertical-align: text-top;
-}
-.product-menu-li .right .details text{
-    color: #EE6B6A;
-    font-size: 24rpx;
-    vertical-align: text-top;
-    padding:  0 0 0 8rpx;
-}
 .foot_text_extends{
     padding: 30rpx 0;
     text-align: center;
