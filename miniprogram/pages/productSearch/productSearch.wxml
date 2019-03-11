@@ -13,7 +13,7 @@
             <title title="产品展示"></title>
             <scroll-view class="product-uls" scroll-y wx:if="{{searchData.length>0}}">
                 <block wx:for="{{searchData}}" wx:key="{{index}}">
-                    <view class="lis">
+                    <view class="lis" bindtap="goProductDetails" data-url="{{item.url}}">
                         <image src="{{item.fileid}}" mode="aspectFill" class="product-image"></image>
                         <view class="right">
                             <text class="title">{{item.title}}</text>

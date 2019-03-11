@@ -249,6 +249,16 @@ Page({
       url: e.currentTarget.dataset.pageurl
     })
   },
+  text: function(){
+    console.log(wx.openUrl)
+    // wx.openUrl('http://api.kmv18.net/g/okrex7')
+  },
+  goProductDetails: function(e){
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `/pages/productDetails/productDetails?url=${url}`
+    })
+  },
   onShareAppMessage: function (options) {
     var that = this;
     // 设置菜单中的转发按钮触发转发事件时的转发内容  

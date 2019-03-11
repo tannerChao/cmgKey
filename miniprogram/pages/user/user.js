@@ -86,10 +86,25 @@ Page({
     })
   },
   taobao: function(){
-    console.log(1);
-    wx.navigateTo({
-      url: `/pages/web/web?url=${this.data.companyInfo.taobao}`
+    wx.setClipboardData({
+      data: this.data.companyInfo.taobao,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function (res) {
+            wx.showModal({
+              title: '复制成功',
+              content: '由于微信限制,请在浏览器中打开淘宝商城',
+              mask: true,
+              showCancel: false,
+              confirmColor: "#1C82F8"
+            })
+          }
+        })
+      }
     })
+    // wx.navigateTo({
+    //   url: `/pages/web/web?url=${this.data.companyInfo.taobao}`
+    // })
   },
   onShareAppMessage: function (options) {
     var that = this;

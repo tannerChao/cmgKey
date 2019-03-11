@@ -26,7 +26,7 @@
         <view class="hot-cakes-content">
           <view class="hot-cakes-menu">
               <block wx:for="{{hotProduct}}" wx:key="{{index}}">
-                  <view class="hot-cakes-menu-li">
+                  <view class="hot-cakes-menu-li" bindtap="goProductDetails" data-url="{{item.url}}">
                       <image  src="{{item.fileid}}" mode="scaleToFill"></image>
                       <text class="user-motto">{{item.name}}</text>
                   </view>

@@ -1,0 +1,4 @@
+<!--miniprogram/pages/productDetails/productDetails.wxml-->
+<view class="product-details">
+    <image  src="{{url}}" mode="widthFix"></image>
+</view>

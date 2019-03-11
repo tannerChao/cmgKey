@@ -23,7 +23,7 @@
                 <view class="product-content-menu">
                     <scroll-view scroll-y class="product-uls" style="height: 660rpx">
                         <block wx:for="{{info[listInfoState]}}" wx:key="{{index}}">
-                            <view class="lis">
+                            <view class="lis" bindtap="goProductDetails" data-url="{{item.url}}">
                                 <image src="{{item.fileid}}" mode="aspectFill" class="product-image"></image>
                                 <view class="right">
                                     <text class="title">{{item.title}}</text>

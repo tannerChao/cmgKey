@@ -76,13 +76,17 @@ Page({
   },
   search: function(){
     let { searchVal, info } = this.data;
-    console.log(searchVal,info)
     let array = info.filter(o=>{
       return o.categoryText.indexOf(searchVal)>-1 || o.content.indexOf(searchVal)>-1 || o.name.indexOf(searchVal)>-1 || o.title.indexOf(searchVal)>-1
     })
-    console.log(array);
     this.setData({
       searchData: array
+    })
+  },
+  goProductDetails: function(e){
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `/pages/productDetails/productDetails?url=${url}`
     })
   },
   onGetProduct: function(id){

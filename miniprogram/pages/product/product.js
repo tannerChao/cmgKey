@@ -87,6 +87,12 @@ Page({
       }
     })
   },
+  goProductDetails: function(e){
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `/pages/productDetails/productDetails?url=${url}`
+    })
+  },
   onShareAppMessage: function (options) {
     var that = this;
     // 设置菜单中的转发按钮触发转发事件时的转发内容  

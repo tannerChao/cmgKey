@@ -8,6 +8,7 @@
     "pages/user/user",
     "pages/news/news",
     "pages/web/web",
+    "pages/productDetails/productDetails",
     "pages/productSearch/productSearch",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
