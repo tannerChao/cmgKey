@@ -44,7 +44,6 @@
 }
 .content .menu{
     display: flex;
-    justify-content: space-between;
     flex-flow:row wrap;
     width: 100%;
     border-bottom: 1rpx solid #e4e4e4;

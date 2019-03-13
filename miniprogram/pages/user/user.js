@@ -8,7 +8,7 @@ Page({
     userInfo: {avatarUrl:'../../images/common/xsy.png'},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    
+    admin: []
   },
   //事件处理函数
   loadMoreProduct:(e)=>{
@@ -50,10 +50,15 @@ Page({
     }else{
       this.getCompany()
     }
-    console.log(this.data.userInfo);
+    if(app.globalData.admin){
+      this.setData({
+        admin: app.globalData.admin,
+      }) 
+    }else{
+      this.getAdmin()
+    }
   },
   getUserInfo: function(e) {
-    console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
@@ -77,6 +82,31 @@ Page({
           companyInfo:res.result.data[0]
         })
         app.globalCompanyData=res.result.data[0];
+        wx.hideLoading()
+      },
+      fail: err =>{
+        console.error('[云函数] [login] 调用失败', err);
+        wx.hideLoading()
+      }
+    })
+  },
+  getAdmin: function(){
+    let that = this;
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {
+        conditions:{},
+        functions: 'getAdmin',  
+      },
+      success: res =>{
+        that.setData({
+          admin:res.result.data
+        })
+        app.globalData.admin=res.result.data;
         wx.hideLoading()
       },
       fail: err =>{
@@ -111,5 +141,10 @@ Page({
     // 设置菜单中的转发按钮触发转发事件时的转发内容  
     // 返回shareObj
     return app.share;
-    }
+  },
+  goXitong: function(){
+    wx.navigateTo({
+      url: '/pages/xitong/xitong'
+    })
+  }
 })

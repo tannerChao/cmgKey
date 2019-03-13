@@ -1,0 +1,155 @@
+ .xitong-content{
+    margin: 20rpx 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    background: #f4f4f4;
+    flex:1;
+    
+}
+.xitong-container .xitong-content .xitong{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.xitong-type-menu{
+    flex: 1;
+    overflow: hidden;
+    justify-content: space-between;
+    display: flex;
+    margin: 20rpx 0 0 0;
+}
+.xitong-type-uls{
+    overflow: hidden;
+    background: #ffffff;
+    width: 160rpx;
+
+}
+.xitong-type-uls .lis{
+    width: 100%;
+    border-bottom: 1rpx solid #e4e4e4;
+}
+.xitong-type-uls .activeLis{
+    padding: 20rpx;
+    color: #666666;
+    display: flex;
+    background:  #f4f4f4;
+    border-left: 2px solid #1C82F8;
+}
+.xitong-type-uls .lis text, .xitong-type-uls .activeLis{
+    width: 100%;
+    text-align: center;
+    font-size: 28rpx;
+    color: #333333;
+    padding: 20rpx 0;
+    display: block;
+}
+
+.xitong-content-menu{
+    flex: 1;
+    padding: 0 20rpx;
+}
+.xitong-content-menu .xitong-uls{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.xitong-content-menu .xitong-uls .lis{
+    background: #ffffff;
+    padding: 20rpx;
+    color: #666666;
+    display: flex;
+    margin: 0 0 20rpx 0;
+}
+
+.xitong-content-menu .xitong-uls .lis:last-child{
+    border: none
+}
+.xitong-content-menu .xitong-uls .lis .xitong-image{
+    width: 160rpx;
+    height: 160rpx;
+    margin: 0 20rpx 0 0;
+    font-size: 0;
+}
+.xitong-content-menu .xitong-uls .lis .right{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+}
+.xitong-uls .lis .right .title{
+    color: #333333;
+    font-size: 28rpx;
+    height: 20rpx;
+}
+.xitong-uls .lis .right .content{
+    color: #999999;
+    flex: 1;
+    font-size: 24rpx;
+    line-height:1.3;
+    padding:20rpx 0;
+    text-align:left;
+
+}
+.xitong-uls .lis .right .details{
+    height: 40rpx;
+    display: flex;
+}
+.xitong-uls .lis .right .details .money{
+    margin: 0 20rpx 0 0;
+    vertical-align: text-top;
+    font-size: 24rpx;
+    color: "#1C82F8"
+}
+.xitong-uls .lis .right .details .numers{
+    vertical-align: text-top;
+    font-size: 24rpx;
+    color: "#1C82F8"
+}
+.xitong-uls .lis .right .details .money image, .xitong-uls .lis .right .details .numers image{
+    width: 32rpx;
+    height: 32rpx;
+    vertical-align: text-top;
+    margin: 0 10rpx 0 0 
+}
+
+.xitong-menu{
+    height: 100%;
+    flex: 1;
+}
+.xitong-menu-ul{
+    padding: 0rpx 0 0rpx 30rpx; 
+    font-size: 0;  
+}
+.xitong-menu-ul .xitong-menu-li{
+    border-bottom: 1rpx solid #e4e4e4;
+    display: flex;
+    justify-content: space-between;
+    padding: 30rpx 0;
+}
+.xitong-content .xitong-menu-ul:last-child .xitong-menu-li{
+    border: none
+}
+::-webkit-scrollbar
+{
+    width: 6rpx;
+    height: 6px;
+    background-color: transparent;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+.xitong-uls::-webkit-scrollbar-track
+{
+    border-radius: 10px;
+    background-color: transparent;
+}
+/*定义滑块 内阴影+圆角*/
+.xitong-uls::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;
+    background-color: #e4e4e4;
+}
+.xitong-menu-li image{
+    width: 200rpx;
+    height: 200rpx;
+}

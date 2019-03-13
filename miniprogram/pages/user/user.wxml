@@ -46,8 +46,14 @@
                 <image src="../../images/common/feedback.png" mode="scaleToFill" style="width:50rpx;height:50rpx"></image>
                 <text>意见反馈</text>
             </view>
+            <view class="line"></view> 
+        </view>
+        <view class="lis open">
+            <view class="box" wx:if="{{admin.length>0}}" bindtap="goXitong">
+                <image src="../../images/common/xitong.png" mode="scaleToFill" style="width:50rpx;height:50rpx"></image>
+                <text>系统设置</text>
+            </view>
             <view class="line"></view>
-
         </view>
     </view>
         

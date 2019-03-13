@@ -1,0 +1,20 @@
+<view class="xitong-content">
+    <view class="xitong">
+        <view class="xitong-type-menu">
+            <view class="xitong-type-uls">
+                <block wx:for="{{listInfo}}" wx:key="{{index}}">
+                    <view class="{{listInfoState === item.category?'activeLis': 'lis' }}" bindtap="onClickProduct" data-id="{{item.category}}">
+                        <text>{{item.title}}</text>
+                    </view>
+                </block>
+            </view>
+            <view class="xitong-content-menu">
+                <view class="xitong-uls">
+                    <view class="lis">
+                    
+                    </view>
+                </view>   
+            </view>
+        </view>
+    </view>
+</view>

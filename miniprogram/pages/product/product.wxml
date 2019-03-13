@@ -29,11 +29,11 @@
                                     <text class="title">{{item.title}}</text>
                                     <text class="content">{{item.content}}</text>
                                     <view class="details">
-                                        <view class="money">
+                                        <view class="money" wx:if="{{item.price!=123456}}">
                                             <image src="../../images/common/jiage.png" mode="widthFix" lazy-load></image>
                                             <text class="text">{{item.price}}</text>
                                         </view>
-                                        <view class="numers">
+                                        <view class="numers" wx:if="{{item.price!=123456}}">
                                             <image src="../../images/common/numers.png" mode="widthFix" lazy-load></image>
                                             <text class="text">{{item.sold}}</text>
                                         </view>
