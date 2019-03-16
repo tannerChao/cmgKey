@@ -12,7 +12,7 @@
             <view class="content-news-content">
               <view class="content-news-menu">
                   <block wx:for="{{news}}" wx:key="*this">
-                      <view class="content-news-menu-li"> 
+                      <view class="content-news-menu-li" bindtap="goNews"> 
                           <text class="title">{{item.title}}</text>
                           <text class="time">{{item.timeText}}</text>
                       </view>

@@ -1,0 +1,20 @@
+.imageBox{
+    position: relative;
+}
+
+.imageBox image{
+    width: 64rpx;
+    height: 64rpx;
+}
+.imageBox image{
+    width: 200rpx;
+    height: 200rpx;
+    margin: 0 20rpx 0 0;
+}
+.imageBox .detele{
+    position: absolute;
+    top: 4rpx;
+    right: 4rpx;
+    width: 40rpx; 
+    height: 40rpx;
+}

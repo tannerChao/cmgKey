@@ -1,4 +1,4 @@
 {
   "navigationBarTitleText": "系统设置",
-  "usingComponents": {"title":"../../component/title/title","phone":"../../component/phone/phone"}
+  "usingComponents": {"title":"../../component/title/title","tabBars":"../../component/tabBars/tabBars","imageBox":"../../component/imageBox/imageBox","noMore":"../../component/noMore/noMore"}
 }

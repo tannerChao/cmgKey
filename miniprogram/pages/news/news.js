@@ -44,6 +44,12 @@ Page({
       }
     })
   },
+  goNews: function(e){
+    let url = e.currentTarget.dataset.url
+    wx.navigateTo({
+      url: `/pages/web/web?url=https://mp.weixin.qq.com/tmpl/0_4487865-zh_CN.html`
+    })
+  },
   onShareAppMessage: function (options) {
     var that = this;
     // 设置菜单中的转发按钮触发转发事件时的转发内容  

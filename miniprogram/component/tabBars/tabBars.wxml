@@ -1,0 +1,12 @@
+<!--component/tabBars.wxml-->
+<view class="bars">
+    <view class="{{state===0?'bars-activeList':'bars-lis'}}" data-id="0" wx:if="{{details==1}}"  bindtap='onTapChild'>
+        详情
+    </view>
+    <view class="{{state===1?'bars-activeList':'bars-lis'}}" data-id="1" wx:if="{{add==1}}" bindtap='onTapChild'>
+        增加
+    </view>
+    <view class="{{state===1?'bars-activeList':'bars-lis'}}" data-id="2" wx:if="{{update==1}}" bindtap='onTapChild'>
+        修改
+    </view>
+</view>

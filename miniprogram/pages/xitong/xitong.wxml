@@ -10,10 +10,131 @@
             </view>
             <view class="xitong-content-menu">
                 <view class="xitong-uls">
-                    <view class="lis">
-                    
+                    <view class="lis" wx:if="{{listInfoState==0}}">
+                        <tabBars state="{{tabBarState}}" bind:parentEvent='setTabBarState'  details="1" add="1" update="0"></tabBars>
+                        <block wx:for="{{info[listInfoState]}}" wx:if="{{tabBarState==0}}" wx:key="{{index}}"> 
+                            <view class="home-content" wx:if="{{info[listInfoState].length>0}}">
+                                <view class="home-content-left">
+                                    <image src="{{item.fileid}}"></image>
+                                    <text wx:if="{{item.name}}">{{item.name}}</text>
+                                </view>
+                                <button plain data-id="{{item._id}}" data-index="{{listInfoState}}" data-way="deleteInfo" bindtap="detlate">删除</button>
+                            </view>
+                        </block> 
+                        <noMore info="{{info[listInfoState]}}" wx:if="{{tabBarState==0 &&info [listInfoState].length===0}}" class="no-more"/>    
+                        <block wx:if="{{tabBarState==1}}" wx:key="{{index}}"> 
+                            <view class="chooseImage-add">
+                                <view wx:if="{{chooseImage.length>0}}" class="add-image">
+                                   <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}"/>
+                                </view>
+                                <button bindtap="chooseImage"  class="chooseImage">
+                                    <image src="../../images/common/add-image.png"></image>
+                                </button>
+                            </view>
+                            <form class="home-add-form">
+                                <view class="section">
+                                    <view class="section__title">标题</view>
+                                    <input name="input" placeholder="请输入标题" bindinput="banerTitile"/>
+                                </view>
+                                <view class="btn-area">
+                                    <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
+                                </view>
+                            </form>
+                        </block>
                     </view>
-                </view>   
+                    <view class="lis" wx:if="{{listInfoState==1}}">
+                        <tabBars state="{{tabBarState}}" bind:parentEvent='setTabBarState'  details="1" add="1" update="0"></tabBars>
+                        <block wx:for="{{info[listInfoState]}}" wx:if="{{tabBarState==0}}" wx:key="{{index}}"> 
+                            <view class="home-content" wx:if="{{info[listInfoState].length>0}}">
+                                <view class="home-content-left">
+                                    <image src="{{item.fileid}}"></image>
+                                    <text wx:if="{{item.name}}">{{item.name}}</text>
+                                </view>
+                                <button plain data-id="{{item._id}}" data-index="{{listInfoState}}" data-way="deleteInfo" bindtap="detlate">删除</button>
+                            </view>
+                        </block> 
+                        <noMore info="{{info[listInfoState]}}" wx:if="{{tabBarState==0 &&info [listInfoState].length===0}}" class="no-more"/>    
+                        <block wx:if="{{tabBarState==1}}" wx:key="{{index}}"> 
+                            <view class="chooseImage-add">
+                                <view wx:if="{{chooseImage.length>0}}" class="add-image">
+                                    <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}"/>
+                                </view>
+                                <button bindtap="chooseImage"  class="chooseImage">
+                                    <image src="../../images/common/add-image.png"></image>
+                                </button>
+                            </view>
+                            <form class="home-add-form">
+                                <view class="section">
+                                    <view class="section__title">标题</view>
+                                    <input name="input" placeholder="name" bindinput="pdtName"/>
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">类型</view>
+                                    <input name="input" placeholder="name" bindinput="pdCategoryText" />
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">型号</view>
+                                    <input name="input" placeholder="name" bindinput="pdModelNum" />
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">价格</view>
+                                    <input name="input" placeholder="name" bindinput="pdPrice" />
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">销量</view>
+                                    <input name="input" placeholder="name" bindinput="pdSold" />
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">余量</view>
+                                    <input name="input" placeholder="name" bindinput="pdRemaining" />
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">标题</view>
+                                    <input name="input" placeholder="name" bindinput="pdTitle" />
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">热门</view>
+                                    <switch name="switch" />
+                                </view>
+                                <view class="btn-area">
+                                    <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
+                                </view>
+                            </form>
+                        </block>
+                    </view>
+                    <view class="lis" wx:if="{{listInfoState==2}}">
+                        <tabBars state="{{tabBarState}}" bind:parentEvent='setTabBarState'  details="1" add="1" update="0"></tabBars>
+                        <block wx:for="{{info[listInfoState]}}" wx:if="{{tabBarState==0}}" wx:key="{{index}}"> 
+                            <view class="home-content" wx:if="{{info[listInfoState].length>0}}">
+                                <view class="home-content-left">
+                                    <image src="{{item.logo}}"></image>
+                                    <text wx:if="{{item.title}}">{{item.title}}</text>
+                                </view>
+                                <button plain data-id="{{item._id}}" data-index="{{listInfoState}}" data-way="deleteInfo" bindtap="detlate">删除</button>
+                            </view>
+                        </block> 
+                        <noMore info="{{info[listInfoState]}}" wx:if="{{tabBarState==0 &&info [listInfoState].length===0}}" class="no-more"/>    
+                        <block wx:if="{{tabBarState==1}}" wx:key="{{index}}"> 
+                            <view class="chooseImage-add">
+                                <view wx:if="{{chooseImage.length>0}}" class="add-image">
+                                    <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}"/>
+                                </view>
+                                <button bindtap="chooseImage"  class="chooseImage">
+                                    <image src="../../images/common/add-image.png"></image>
+                                </button>
+                            </view>
+                            <form class="home-add-form">
+                                <view class="section">
+                                    <view class="section__title">标题</view>
+                                    <input name="input" placeholder="请输入标题" bindinput="banerTitile"/>
+                                </view>
+                                <view class="btn-area">
+                                    <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
+                                </view>
+                            </form>
+                        </block>
+                    </view>
+                </view> 
             </view>
         </view>
     </view>

@@ -1,0 +1,7 @@
+<!--component/imageBox/imageBox.wxml-->
+<view class="imageBox">
+    <image src="{{src}}"></image>
+    <cover-view class="detele" bindtap='onTapChild'>
+        <cover-image class="img" src="../../images/common/delete-image.png" />
+    </cover-view>
+</view>

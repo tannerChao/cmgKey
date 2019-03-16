@@ -20,4 +20,36 @@ class News {
       }
     });
   }
+
+  async getAll(info) {
+    const db = cloud.database();
+    return await db.collection('new').get({
+      success: res=> {
+        return res;
+      }
+    });
+  }
+
+  async addInfo(info) {
+    const db = cloud.database();
+    return await db.collection('new').add({
+      data: {
+        description: 'learn cloud database',
+        ...info
+      },
+      success: res=> {
+        return res;
+      }
+    });
+  }
+
+  async deleteInfo(info) {
+    const db = cloud.database();
+    return await db.collection('new').doc(info._id).remove({
+      success: res=> {
+        return res;
+      }
+    });
+  }
+
 }

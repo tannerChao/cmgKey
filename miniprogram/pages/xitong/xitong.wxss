@@ -1,5 +1,10 @@
- .xitong-content{
-    margin: 20rpx 0;
+.xitong{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.xitong-content{
+    margin: 20rpx 0 0 0;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -24,6 +29,7 @@
     overflow: hidden;
     background: #ffffff;
     width: 160rpx;
+    height: vh100;
 
 }
 .xitong-type-uls .lis{
@@ -49,20 +55,52 @@
 .xitong-content-menu{
     flex: 1;
     padding: 0 20rpx;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .xitong-content-menu .xitong-uls{
     width: 100%;
     display: flex;
     flex-direction: column;
+    flex:1;
+
 }
 .xitong-content-menu .xitong-uls .lis{
-    background: #ffffff;
-    padding: 20rpx;
     color: #666666;
     display: flex;
     margin: 0 0 20rpx 0;
-}
+    flex-direction: column;
+    flex:1;
 
+}
+.home-content{
+    background:#ffffff;
+    display:flex;
+    justify-content:space-between;
+    padding: 20rpx;
+    align-items: center;
+    margin: 0 0 20rpx 0;
+}
+.home-content-left{
+    display: flex;
+}
+.home-content-left image{
+    height: 80px;
+    width: 100px;
+}
+.home-content-left text{
+    font-size: 28rpx;
+    margin: 0 0 0 10rpx;
+}
+.home-content button{
+    border: none;
+    color: #999999;
+    font-size: 28rpx;
+    margin: 0;
+    padding:0;
+    width:80rpx;
+}
 .xitong-content-menu .xitong-uls .lis:last-child{
     border: none
 }
@@ -152,4 +190,55 @@
 .xitong-menu-li image{
     width: 200rpx;
     height: 200rpx;
+}
+.chooseImage-add{
+    display: flex;
+    background: #ffffff;
+    padding: 20rpx;
+    margin: 0 0 20rpx 0;
+}
+.chooseImage{
+    width: 200rpx;
+    height: 200rpx;
+    border: 1rpx solid #e4e4e4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: #ffffff;
+}
+.chooseImage image{
+    width: 60rpx;
+    height: 60rpx;
+}
+form .section{
+    display: flex;
+    margin: 0 0 20rpx 0;
+    font-size: 28rpx;
+    padding: 20rpx;
+    align-items:center;
+    background: #ffffff;
+}
+form .section label{
+    color: #333333;
+    padding: 0 6rpx;
+
+}
+form .section input{
+    color: #000000;
+    padding:6rpx;
+
+}
+.xitong-uls .no-more{
+    height: vh100;
+    background: #fff;
+}
+
+.news-home-content-left{
+    display: flex;
+    flex-direction: column;
+
+}
+.news-home-content-left title{
+    margin: 0 0 16rpx 0;
 }

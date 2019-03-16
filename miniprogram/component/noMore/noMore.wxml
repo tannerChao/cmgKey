@@ -1,0 +1,8 @@
+<block>
+    <view class="no-more">
+        <view class='box'>
+            <image src="../../images/common/no-more.png" mode="scaleToFill"></image>
+            <text>没有更多</text>
+        </view>
+    </view>
+</block>

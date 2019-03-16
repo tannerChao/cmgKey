@@ -126,7 +126,10 @@ Page({
     let that = this;
     wx.cloud.callFunction({
       name: 'getBaner',
-      data: {},
+      data: {
+        conditions:{},
+        functions: 'getInfo',  
+      },
       success: res =>{
         that.setData({
           baner:res.result.data

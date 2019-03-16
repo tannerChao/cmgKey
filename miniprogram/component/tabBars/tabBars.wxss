@@ -1,0 +1,22 @@
+/* component/tabBars.wxss */
+.bars{
+    display: flex;
+    font-size: 28rpx;
+    margin: 0 0 20rpx 0;
+    padding: 1rpx 0rpx 0 0rpx;
+    background: #ffffff
+}
+.bars .bars-lis{
+    width: 160rpx;
+    padding: 20rpx 0;
+    color: #999999;
+    text-align: center;
+    background: #ffffff;
+}
+.bars .bars-activeList{
+    width: 160rpx;
+    padding: 20rpx 0;
+    color: #1C82F8;
+    text-align: center;
+    background: #f4f4f4
+}

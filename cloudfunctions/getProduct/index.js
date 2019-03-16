@@ -32,7 +32,7 @@ class Product {
   }
   async getAll(info) {
     const db = cloud.database();
-    return await db.collection('product').get({
+    return await db.collection('text').get({
       success: res => {
         return res;
       }
@@ -46,4 +46,28 @@ class Product {
       }
     });
   }
+
+  async addInfo(info) {
+    const db = cloud.database();
+    return await db.collection('text').add({
+      data: {
+        description: 'learn cloud database',
+        ...info
+      },
+      success: res=> {
+        return res;
+      }
+    });
+  }
+
+  async deleteInfo(info) {
+    const db = cloud.database();
+    return await db.collection('text').doc(info._id).remove({
+      success: res=> {
+        return res;
+      }
+    });
+  }
+
+
 }
