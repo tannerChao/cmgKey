@@ -16,7 +16,8 @@
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/xitong/xitong"
+    "pages/xitong/xitong",
+    "pages/newDetails/newDetails"
   ],
   "window": {
     "backgroundColor": "#ffffff",

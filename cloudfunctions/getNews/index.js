@@ -52,4 +52,13 @@ class News {
     });
   }
 
+  async getDetails(info) {
+    const fileID = info.fileID;
+    const fileList = [fileID]
+    const res = await cloud.downloadFile({
+      fileList: fileList,
+    })
+    return res.fileList[0]
+  }
+
 }

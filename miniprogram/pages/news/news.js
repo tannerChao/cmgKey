@@ -2,7 +2,8 @@ const moment =require('../../utils/moment.min.js')
 
 Page({
   data: {
-    news:[]
+    news:[],
+    details:''
   },
   onLoad: function () {
 
@@ -55,5 +56,49 @@ Page({
     // 设置菜单中的转发按钮触发转发事件时的转发内容  
     // 返回shareObj
     return app.share;
-    }
+  },
+  downloadFile: function(e){
+    let type = e.currentTarget.dataset.type;
+    let url = e.currentTarget.dataset.url;
+    console.log(e);
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    wx.cloud.callFunction({
+      name: 'getNews',
+      data: {
+        conditions:{fileID:url},
+        functions: 'getDetails',  
+      },
+      success: res =>{
+        console.log(res)
+          if(res.result.errMsg=='ok'){
+            console.log(res)
+              wx.openDocument({
+                filePath: res.result.tempFileURL,
+                success: function (res) {
+                  console.log('打开文档成功')
+                },fail: err =>{
+                  console.log(err)
+                }
+              })
+              wx.hideLoading()
+          }
+          
+      },
+      fail: err =>{
+        console.error('[云函数] [login] 调用失败', err);
+        wx.hideLoading()
+      }
+    })
+    // const res = await cloud.downloadFile({
+    //   fileID: url,
+    // })
+    // const buffer = res.fileContent;
+    // console.log(buffer)
+    // this.setData({
+    //   details:buffer.toString('utf8')
+    //  })
+  }
 })

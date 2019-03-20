@@ -42,7 +42,7 @@
         </view>
         <view class="brand-news-content">
           <view class="brand-news-menu">
-              <block wx:for="{{new}}" wx:key="*this">
+              <block wx:for="{{new}}" wx:key="{{newIndex}}">
                   <view class="brand-news-menu-li">
                       <view class="left">
                           <image  src="{{item.logo}}" mode="scaleToFill"></image>
