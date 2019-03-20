@@ -1,4 +1,5 @@
-// miniprogram/pages/xitong/xitong.js
+const WxParse = require("../../wxParse/wxParse.js");
+
 Page({
 
   /**
@@ -16,7 +17,12 @@ Page({
     info:[],
     tabBarState: 0,
     chooseImage: [],
-    banerTitile: ''
+    banerTitile: '',
+    
+    newsDetails:'',
+    newsDetailsYuLan: '',
+    newsLogo: []
+
   },
 
   /**
@@ -150,28 +156,30 @@ Page({
       console.log(this.data.listInfo)
     }
   },
-  chooseImage: function(){
+  chooseImage: function(e){
+    let id = e.currentTarget.dataset.name;
     wx.chooseImage({
       sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
-        const images = this.data.chooseImage;
+        const images = this.data[id];
         images[0]=res.tempFilePaths[0]
         // 限制最多只能留下3张照片
         this.setData({
-          chooseImage: images
-        })
+          [id]: images
+        });
+        console.log(this.data)
       }
     })
   },
-  detleteImage: function(){
-    console.log(1)
+  detleteImage: function(e){
+    let name = e.detail.name;
     wx.showLoading({
       title: '加载中',
       mask: true
     })
     this.setData({
-      chooseImage:[]
+      [name]:[]
     })
     wx.hideLoading()
   },
@@ -238,6 +246,50 @@ Page({
         wx.hideLoading();
       }
     }) 
+  },
+  editorNewsDetails: function(event) {
+    this.getNewsDetailsYuLan(event.detail.value)
+    this.setData({
+      newsDetails: event.detail.value,
+    })
 
+  },
+
+  getNewsDetailsYuLan: function(value){
+    let array = value.split('&Br'); 
+    let html=''
+    console.log(array)
+    array.forEach(o => {
+      html=html+`<div style="${o.indexOf('<img')>-1?'':'text-indent:2em;'}text-align:left;padding:8px 0 0 0">${o}</div>`;
+    });
+    console.log(html)
+
+    var that = this;
+    var article = html; 
+    WxParse.wxParse('article', 'html', article, that, 5);
+
+  },
+
+  setBr: function(){
+    this.setData({
+      newsDetails: `${this.data.newsDetails}&Br`
+    })
+  },
+
+  getNewsImage: function(){
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
+      sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
+      success: res => {
+        const images = this.data.chooseImage;
+        images[0]=res.tempFilePaths[0]
+        // 限制最多只能留下3张照片
+        this.setData({
+            newsDetails: `${this.data.newsDetails}&Br<img src="${images[0]}" class='newImage' alt="w">&Br`
+        })
+      }
+    })
+    
   }
+
 })

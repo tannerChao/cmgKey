@@ -1,3 +1,4 @@
+@import "/wxParse/wxParse.wxss";
 .xitong{
     flex: 1;
     display: flex;
@@ -198,8 +199,8 @@
     margin: 0 0 20rpx 0;
 }
 .chooseImage{
-    width: 200rpx;
-    height: 200rpx;
+    width: 160rpx;
+    height: 160rpx;
     border: 1rpx solid #e4e4e4;
     display: flex;
     justify-content: center;
@@ -241,4 +242,50 @@ form .section input{
 }
 .news-home-content-left title{
     margin: 0 0 16rpx 0;
+}
+.news-editor-contaner textarea{
+    min-height: 240rpx;
+}
+.section-yulan{
+    display: flex;
+    margin: 0 0 20rpx 0;
+    font-size: 28rpx;
+    padding: 20rpx;
+    align-items:center;
+    background: #ffffff;
+    flex-direction: column;
+}
+.section-yulan .conpoment-title{
+    width: 100%;
+}
+.editor-image{
+    display:flex;
+    justify-content:left;
+    margin:0;
+    background:#ffffff;
+    align-items: center;
+}
+.editor-image image{
+    width:80rpx;
+    height:60rpx;
+}
+.editor-image .br{
+    margin:0 0 0 20rpx;
+    border-radius: 10rpx;
+}
+.news-editor-yulan{
+    width: 100%;
+}
+.news-editor-yulan .line{
+    display: block;
+    width: 100%;
+}
+.wxParse-div .newImage{
+    width: 100%;
+    height: 300rpx;
+}
+.logo-add{
+    display: flex;
+    background: #ffffff;
+    padding: 0 20rpx;
 }

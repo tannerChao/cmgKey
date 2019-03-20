@@ -1,4 +1,6 @@
 //app.js
+// const WxParse = require('./wxParse/wxParse');
+
 App({
   onLaunch: function () {
     

@@ -1,3 +1,4 @@
+<import src="../../wxParse/wxParse.wxml"/> 
 <view class="xitong-content">
     <view class="xitong">
         <view class="xitong-type-menu">
@@ -24,8 +25,8 @@
                         <noMore info="{{info[listInfoState]}}" wx:if="{{tabBarState==0 &&info [listInfoState].length===0}}" class="no-more"/>    
                         <block wx:if="{{tabBarState==1}}" wx:key="{{index}}"> 
                             <view class="chooseImage-add">
-                                <view wx:if="{{chooseImage.length>0}}" class="add-image">
-                                   <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}"/>
+                                <view wx:if="{{chooseImage.length>0}}" class="add-image" data-name="chooseImage">
+                                   <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}" name="chooseImage"/>
                                 </view>
                                 <button bindtap="chooseImage"  class="chooseImage">
                                     <image src="../../images/common/add-image.png"></image>
@@ -115,18 +116,38 @@
                         </block> 
                         <noMore info="{{info[listInfoState]}}" wx:if="{{tabBarState==0 &&info [listInfoState].length===0}}" class="no-more"/>    
                         <block wx:if="{{tabBarState==1}}" wx:key="{{index}}"> 
-                            <view class="chooseImage-add">
-                                <view wx:if="{{chooseImage.length>0}}" class="add-image">
-                                    <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}"/>
-                                </view>
-                                <button bindtap="chooseImage"  class="chooseImage">
-                                    <image src="../../images/common/add-image.png"></image>
-                                </button>
-                            </view>
+
                             <form class="home-add-form">
                                 <view class="section">
                                     <view class="section__title">标题</view>
                                     <input name="input" placeholder="请输入标题" bindinput="banerTitile"/>
+                                </view>
+                                <view class="section">
+                                    <view class="section__title">图标</view>
+                                    <view class="logo-add">
+                                        <view wx:if="{{newsLogo.length>0}}" class="add-image">
+                                            <imageBox bind:parentEvent='detleteImage' src="{{newsLogo[0]}}" name="newsLogo"/>
+                                        </view>
+                                        <button bindtap="chooseImage"  class="chooseImage" data-name="newsLogo">
+                                            <image src="../../images/common/add-image.png"></image>
+                                        </button>
+                                    </view>
+                                </view>
+                                <view class="section">
+                                    <view class='news-editor-contaner'>
+                                        <view   class="editor-image">
+                                            <image src="../../images/common/add-image-2.png" bindtap="getNewsImage"></image>
+                                            <text bindtap="setBr" class='br'>Br</text>
+                                        </view>
+                                        <textarea placeholder="请编辑详细内容" value="{{newsDetails}}" bindinput="editorNewsDetails" maxlength="5000" auto-height="true"/>
+                                        
+                                    </view>    
+                                </view>
+                                <view class="section-yulan">
+                                    <title title="预览" class='conpoment-title'></title>
+                                    <view class="news-editor-yulan">
+                                        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+                                    </view>
                                 </view>
                                 <view class="btn-area">
                                     <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
