@@ -1,1 +1,29 @@
-/* miniprogram/pages/newDetails/newDetails.wxss */
+@import "/wxParse/wxParse.wxss";
+.contaners{
+    background: #f4f4f4;
+    padding: 30rpx;
+    display: flex;
+    flex-direction: column;
+    flex:1;
+
+}
+.title{
+    color: #000000;
+    font-size: 32rpx;
+    padding: 10rpx 0;
+    text-align: center;
+}
+.content{
+    background: #ffffff;
+    font-size: 28rpx;
+    color: #333333;
+    margin:0 0 30rpx 0; 
+    padding: 0 10rpx;
+}
+.footer{
+    font-size: 24rpx;
+    color: #666666;
+    padding: 10rpx 0;
+    text-align:right;
+    padding:50rpx;
+}

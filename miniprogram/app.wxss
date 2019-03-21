@@ -41,3 +41,7 @@ page{
   flex-direction: column;
   letter-spacing: 4rpx;
 }
+.bg_blue{
+  background: #1C82F8;
+  color: #ffffff;
+}

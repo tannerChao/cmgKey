@@ -43,7 +43,7 @@
         <view class="brand-news-content">
           <view class="brand-news-menu">
               <block wx:for="{{new}}" wx:key="{{newIndex}}">
-                  <view class="brand-news-menu-li">
+                  <view class="brand-news-menu-li" bindtap='goNewDetails' data-id="{{item._id}}">
                       <view class="left">
                           <image  src="{{item.logo}}" mode="scaleToFill"></image>
                       </view>

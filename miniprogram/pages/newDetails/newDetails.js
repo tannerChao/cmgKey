@@ -1,18 +1,20 @@
-// miniprogram/pages/newDetails/newDetails.js
+const WxParse = require("../../wxParse/wxParse.js");
+const moment =require('../../utils/moment.min.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    content:  {},
+    time: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.onGetNew(options.id)
   },
 
   /**
@@ -62,5 +64,36 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  onGetNew: function(id) {
+    let that = this;
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    wx.cloud.callFunction({
+      name: 'getNews',
+      data: {
+        conditions:{_id:id},
+        functions: 'getNew',  
+      },
+      success: res =>{
+        console.log(res);
+        var that = this;
+        this.setData({
+          content: res.result.data[0],
+          time: moment(res.result.data[0].time).format('YYYY-MM-DD')
+        });
+        var article = res.result.data[0].details; 
+        WxParse.wxParse('article', 'html', article, that, 5);
+        wx.hideLoading();
+      },
+      fail: err =>{
+        console.error('[云函数] [login] 调用失败', err);
+        wx.hideLoading();
+      }
+    })
+  },
+
 })

@@ -12,7 +12,7 @@
             <view class="content-news-content">
               <view class="content-news-menu">
                   <block wx:for="{{news}}" wx:key="*this">
-                      <view class="content-news-menu-li" data-type="docx" data-url="{{item.url}}"  bindtap='downloadFile'> 
+                      <view class="content-news-menu-li" data-type="docx" data-id="{{item._id}}"  bindtap='goDetails'> 
                           <text class="title">{{item.title}}</text>
                           <text class="time">{{item.timeText}}</text>
                       </view>

@@ -38,7 +38,7 @@
                                     <input name="input" placeholder="请输入标题" bindinput="banerTitile"/>
                                 </view>
                                 <view class="btn-area">
-                                    <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
+                                    <button  class="bg_blue" form-type="submit" bindtap="banerSubmit">提交</button>
                                 </view>
                             </form>
                         </block>
@@ -120,7 +120,7 @@
                             <form class="home-add-form">
                                 <view class="section">
                                     <view class="section__title">标题</view>
-                                    <input name="input" placeholder="请输入标题" bindinput="banerTitile"/>
+                                    <input name="input" placeholder="请输入标题" bindinput="setNewTitile"/>
                                 </view>
                                 <view class="section">
                                     <view class="section__title">图标</view>
@@ -133,14 +133,17 @@
                                         </button>
                                     </view>
                                 </view>
+                                <view class="section jianjie">
+                                    <view class="section__title">简介</view>
+                                    <textarea placeholder="请输入简介" value="{{newContentText}}" auto-height="true" bindinput="setNewContentText" />
+                                </view>
                                 <view class="section">
                                     <view class='news-editor-contaner'>
                                         <view   class="editor-image">
                                             <image src="../../images/common/add-image-2.png" bindtap="getNewsImage"></image>
                                             <text bindtap="setBr" class='br'>Br</text>
                                         </view>
-                                        <textarea placeholder="请编辑详细内容" value="{{newsDetails}}" bindinput="editorNewsDetails" maxlength="5000" auto-height="true"/>
-                                        
+                                        <textarea placeholder="请编辑详细内容" value="{{newsDetails}}" bindinput="editorNewsDetails" maxlength="5000" auto-height="true"/>   
                                     </view>    
                                 </view>
                                 <view class="section-yulan">
@@ -150,7 +153,7 @@
                                     </view>
                                 </view>
                                 <view class="btn-area">
-                                    <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
+                                    <button  class="bg_blue" form-type="submit" bindtap="newSubmit">提交</button>
                                 </view>
                             </form>
                         </block>

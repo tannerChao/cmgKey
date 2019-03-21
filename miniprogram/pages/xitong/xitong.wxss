@@ -240,10 +240,24 @@ form .section input{
     flex-direction: column;
 
 }
+.jianjie{
+    display: flex;
+    justify-content: space-between;
+}
+.jianjie .section__title{
+    width: 60rpx;
+}
+.jianjie textarea{
+    flex: 1
+}
 .news-home-content-left title{
     margin: 0 0 16rpx 0;
 }
+.news-editor-contaner{
+    width: 100%;
+}
 .news-editor-contaner textarea{
+    width: 100%;
     min-height: 240rpx;
 }
 .section-yulan{

@@ -39,7 +39,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/xitong/xitong",
+        "pagePath": "pages/product/product",
         "iconPath": "images/tabBar/product.png",
         "selectedIconPath": "images/tabBar/product_hover.png",
         "text": "产品"

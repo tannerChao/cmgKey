@@ -1,5 +1,5 @@
 const WxParse = require("../../wxParse/wxParse.js");
-
+const moment =require('../../utils/moment.min.js')
 Page({
 
   /**
@@ -19,6 +19,8 @@ Page({
     chooseImage: [],
     banerTitile: '',
     
+    newTitile:'',
+    newContentText:'',
     newsDetails:'',
     newsDetailsYuLan: '',
     newsLogo: []
@@ -247,6 +249,19 @@ Page({
       }
     }) 
   },
+
+  setNewTitile: function(e){
+    this.setData({
+      newTitile: e.detail.value
+    })
+  },
+
+  setNewContentText: function(e){
+    this.setData({
+      newContentText: e.detail.value
+    })
+  },
+
   editorNewsDetails: function(event) {
     this.getNewsDetailsYuLan(event.detail.value)
     this.setData({
@@ -262,7 +277,9 @@ Page({
     array.forEach(o => {
       html=html+`<div style="${o.indexOf('<img')>-1?'':'text-indent:2em;'}text-align:left;padding:8px 0 0 0">${o}</div>`;
     });
-    console.log(html)
+    this.setData({
+      newsDetailsYuLan: html
+    })
 
     var that = this;
     var article = html; 
@@ -282,14 +299,94 @@ Page({
       sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
       success: res => {
         const images = this.data.chooseImage;
-        images[0]=res.tempFilePaths[0]
+        images[0]=res.tempFilePaths[0];
+        console.log(res)
         // 限制最多只能留下3张照片
         this.setData({
-            newsDetails: `${this.data.newsDetails}&Br<img src="${images[0]}" class='newImage' alt="w">&Br`
+            newsDetails: `${this.data.newsDetails}&Br<img src="${images[0]}" class='newImage' width='100%' alt="w">&Br`
         })
       }
     })
     
+  },
+
+  newSubmit: function(){
+      
+    if(this.data.newTitile==''){
+      wx.showToast({title:'消息标题不能为空',mask: true,icon: 'none'});
+      return;
+    }
+    if(this.data.newsLogo.length===0){
+      wx.showToast({title:'消息图标不能为空',mask: true,icon: 'none'});
+      return;
+    } 
+    if(this.data.newsDetails==''){
+      wx.showToast({title:'消息内容不能为空',mask: true,icon: 'none'});
+      return;
+    }
+    
+    const cloudPath = moment().format('YYYY-MM-DD')+moment().get('seconds') + this.data.newsLogo[0].match(/\.[^.]+?$/)[0];
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
+    const that = this;
+    wx.cloud.uploadFile({
+      cloudPath:`image/new/${cloudPath}`,
+      filePath: this.data.newsLogo[0],
+      success: res => {
+
+        let imgReg = /<img.*?(?:>|\/>)/gi;
+        let srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+        let arr = this.data.newsDetailsYuLan.match(imgReg); 
+        let newsDetailsYuLan = that.data.newsDetailsYuLan
+        let controlIndex = 0;
+        for (let i = 0; i < arr.length; i++) {
+          let src = arr[i].match(srcReg);
+          let cloudChildPath = moment().format('YYYY-MM-DD')+moment().get('hours')+Math.ceil(Math.random()*1000)+moment().get('seconds') + src[1].match(/\.[^.]+?$/)[0];
+          wx.cloud.uploadFile({
+            cloudPath:`image/new/${cloudChildPath}`,
+            filePath: src[1],
+            success: res1 => {
+              newsDetailsYuLan=newsDetailsYuLan.replace(src[1], res1.fileID);
+              controlIndex++;
+              if(controlIndex==arr.length){
+                let info = {};
+                info['category']=0;
+                info['contentText']=that.data.newContentText;
+                info['logo']=res.fileID;
+                info['title']=that.data.newTitile;
+                info['details']=newsDetailsYuLan;
+                info['isHot']=0;
+                info['reading']=900; 
+                wx.cloud.callFunction({
+                  name: 'getNews',
+                  data: {
+                    conditions:info,
+                    functions: 'addInfo',  
+                  },
+                  success: res => {
+                    wx.hideLoading();
+                    console.log('曾加新闻成功')
+                  },
+                  fail: err => {
+                    console.log(err)
+                    wx.hideLoading();
+                  }
+                })
+              } 
+            },
+            fail: err => {
+              console.log(err)
+              wx.hideLoading();
+            }
+          })   
+        }
+      },
+      fail: err => {
+        wx.hideLoading();
+      }
+    }) 
   }
 
 })

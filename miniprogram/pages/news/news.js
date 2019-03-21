@@ -45,10 +45,10 @@ Page({
       }
     })
   },
-  goNews: function(e){
-    let url = e.currentTarget.dataset.url
+  goDetails: function(e){
+    let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `/pages/web/web?url=https://mp.weixin.qq.com/tmpl/0_4487865-zh_CN.html`
+      url: `/pages/newDetails/newDetails?id=${id}`
     })
   },
   onShareAppMessage: function (options) {

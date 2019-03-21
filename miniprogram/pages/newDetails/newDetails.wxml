@@ -1,2 +1,12 @@
-<!--miniprogram/pages/newDetails/newDetails.wxml-->
-<text>miniprogram/pages/newDetails/newDetails.wxml</text>
+<import src="../../wxParse/wxParse.wxml"/> 
+<view class="contaners">
+    <view class="content">
+        <view class="title">
+            {{content.title}}
+        </view>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        <view class="footer">
+            {{time}}
+        </view>
+    </view>
+</view>

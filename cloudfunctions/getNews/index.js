@@ -34,7 +34,7 @@ class News {
     const db = cloud.database();
     return await db.collection('new').add({
       data: {
-        description: 'learn cloud database',
+        time: db.serverDate(),
         ...info
       },
       success: res=> {
