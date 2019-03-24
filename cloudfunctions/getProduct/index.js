@@ -32,7 +32,7 @@ class Product {
   }
   async getAll(info) {
     const db = cloud.database();
-    return await db.collection('text').get({
+    return await db.collection('product').get({
       success: res => {
         return res;
       }

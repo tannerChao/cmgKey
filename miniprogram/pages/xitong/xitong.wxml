@@ -49,56 +49,65 @@
                             <view class="home-content" wx:if="{{info[listInfoState].length>0}}">
                                 <view class="home-content-left">
                                     <image src="{{item.fileid}}"></image>
-                                    <text wx:if="{{item.name}}">{{item.name}}</text>
+                                    <view class="home-content-left-box">
+                                        <text wx:if="{{item.name}}">{{item.name}}</text>
+                                        <text wx:if="{{item.content}}">{{item.content}}</text>    
+                                    </view>
                                 </view>
                                 <button plain data-id="{{item._id}}" data-index="{{listInfoState}}" data-way="deleteInfo" bindtap="detlate">删除</button>
                             </view>
                         </block> 
                         <noMore info="{{info[listInfoState]}}" wx:if="{{tabBarState==0 &&info [listInfoState].length===0}}" class="no-more"/>    
                         <block wx:if="{{tabBarState==1}}" wx:key="{{index}}"> 
-                            <view class="chooseImage-add">
-                                <view wx:if="{{chooseImage.length>0}}" class="add-image">
-                                    <imageBox bind:parentEvent='detleteImage' src="{{chooseImage[0]}}"/>
-                                </view>
-                                <button bindtap="chooseImage"  class="chooseImage">
-                                    <image src="../../images/common/add-image.png"></image>
-                                </button>
-                            </view>
+                            
                             <form class="home-add-form">
                                 <view class="section">
+                                    <view class="section__title">图标</view>
+                                    <view class="logo-add">
+                                        <view wx:if="{{productLogo.length>0}}" class="add-image">
+                                            <imageBox bind:parentEvent='detleteImage' src="{{productLogo[0]}}" name="productLogo"/>
+                                        </view>
+                                        <button bindtap="chooseImage"  class="chooseImage" data-name="productLogo">
+                                            <image src="../../images/common/add-image.png"></image>
+                                        </button>
+                                    </view>
+                                </view>
+                                <view class="section">
                                     <view class="section__title">标题</view>
-                                    <input name="input" placeholder="name" bindinput="pdtName"/>
+                                    <input name="input" placeholder="请输入标题" bindinput="setValue" data-argus='title'/>
+                                </view>
+                                <view class="section jianjie">
+                                    <view class="section__title">简介</view>
+                                    <textarea placeholder="请输入简介" value="{{poduct.content}}" auto-height="true" bindinput="setValue" data-argus='content'/>
                                 </view>
                                 <view class="section">
                                     <view class="section__title">类型</view>
-                                    <input name="input" placeholder="name" bindinput="pdCategoryText" />
+                                    <view class="radio-group"   wx:for="{{typeItem}}"  wx:key="{{newIndex}}">
+                                        <view class="{{item.checked?'radio-label-active': 'radio-label'}}"  data-json="{{item}}"  bindtap="typeItemChange">    
+                                            <image src="{{item.checked?'../../images/common/selected.png':'../../images/common/selected-false.png'}}"></image>
+                                            {{item.value}}
+                                        </view>
+                                    </view>
                                 </view>
                                 <view class="section">
                                     <view class="section__title">型号</view>
-                                    <input name="input" placeholder="name" bindinput="pdModelNum" />
+                                    <input name="input" placeholder="请输入型号" bindinput="setValue" data-argus='modelNum'/>
                                 </view>
                                 <view class="section">
                                     <view class="section__title">价格</view>
-                                    <input name="input" placeholder="name" bindinput="pdPrice" />
-                                </view>
-                                <view class="section">
-                                    <view class="section__title">销量</view>
-                                    <input name="input" placeholder="name" bindinput="pdSold" />
-                                </view>
-                                <view class="section">
-                                    <view class="section__title">余量</view>
-                                    <input name="input" placeholder="name" bindinput="pdRemaining" />
-                                </view>
-                                <view class="section">
-                                    <view class="section__title">标题</view>
-                                    <input name="input" placeholder="name" bindinput="pdTitle" />
+                                    <input name="input" type="number" placeholder="请输入价格" bindinput="setValue" data-argus='price'/>
                                 </view>
                                 <view class="section">
                                     <view class="section__title">热门</view>
-                                    <switch name="switch" />
+                                    <view class="radio-group"   wx:for="{{isHotItem}}" wx:key="{{newIndex}}">
+                                        <view class="{{item.checked?'radio-label-active':'radio-label'}}" data-json="{{item}}" bindtap="isHotItemChange" >
+                                            <image src="{{item.checked?'../../images/common/selected.png':'../../images/common/selected-false.png'}}"></image>
+                                            <text>{{item.value}}</text>
+                                        </view>
+                                    </view>
                                 </view>
                                 <view class="btn-area">
-                                    <button type="primary" form-type="submit" bindtap="banerSubmit">提交</button>
+                                    <button class="bg_blue" form-type="submit" bindtap="productSubmit">提交</button>
                                 </view>
                             </form>
                         </block>

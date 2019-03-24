@@ -14,6 +14,15 @@ Page({
       {title:'管理员',category: 3,database: 'admin',dataWay:''},
       {title:'公司信息',category: 4,database: 'company',dataWay:''},
     ],
+
+    product:{
+      title:'',
+      content:'',
+      modelNum:'',
+      price:0,
+
+    },
+
     info:[],
     tabBarState: 0,
     chooseImage: [],
@@ -23,7 +32,24 @@ Page({
     newContentText:'',
     newsDetails:'',
     newsDetailsYuLan: '',
-    newsLogo: []
+    newsLogo: [],
+
+    typeItem:[{
+      id: '0', value: '破壁机',checked:true
+    },{
+      id: '2', value: '吊扇灯',checked:false
+    },
+    {
+      id: '1', value: '茶具',checked:false
+    }],
+    isHotItem:[{
+      id: '0', value: '否',checked:true
+    },
+    {
+      id: '1', value: '是',checked:false
+    }],
+
+    productLogo: []
 
   },
 
@@ -185,6 +211,9 @@ Page({
     })
     wx.hideLoading()
   },
+
+  //baner模块
+
   banerTitile: function(e){
     this.setData({
         banerTitile: e.detail.value
@@ -249,6 +278,8 @@ Page({
       }
     }) 
   },
+
+  //新闻模块
 
   setNewTitile: function(e){
     this.setData({
@@ -387,6 +418,137 @@ Page({
         wx.hideLoading();
       }
     }) 
+  },
+
+  //产品增加
+
+  productSubmit: function(){
+      if(this.data.productLogo.length===0){
+        wx.showToast({title:'产品图标不能为空',mask: true,icon: 'none'});
+        return;
+      }
+      if(this.data.product.title==''){
+        wx.showToast({title:'产品标题不能为空',mask: true,icon: 'none'});
+        return;
+      } 
+      console.log(this.data.product)
+      if(this.data.product.modelNum==''){
+        wx.showToast({title:'产品型号不能为空',mask: true,icon: 'none'});
+        return;
+      }
+      if(this.data.product.price==''){
+        wx.showToast({title:'产品价格不能为空',mask: true,icon: 'none'});
+        return;
+      }
+
+      const cloudPath = moment().format('YYYY-MM-DD')+moment().get('seconds') + this.data.productLogo[0].match(/\.[^.]+?$/)[0];
+      wx.showLoading({
+        title: '加载中',
+        mask: true
+      })
+      const that = this;
+      wx.cloud.uploadFile({
+        cloudPath:`image/product/${cloudPath}`,
+        filePath: this.data.newsLogo[0],
+        success: res => {
+  
+          let imgReg = /<img.*?(?:>|\/>)/gi;
+          let srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
+          let arr = this.data.newsDetailsYuLan.match(imgReg); 
+          let newsDetailsYuLan = that.data.newsDetailsYuLan
+          let controlIndex = 0;
+          for (let i = 0; i < arr.length; i++) {
+            let src = arr[i].match(srcReg);
+            let cloudChildPath = moment().format('YYYY-MM-DD')+moment().get('hours')+Math.ceil(Math.random()*1000)+moment().get('seconds') + src[1].match(/\.[^.]+?$/)[0];
+            wx.cloud.uploadFile({
+              cloudPath:`image/new/${cloudChildPath}`,
+              filePath: src[1],
+              success: res1 => {
+                newsDetailsYuLan=newsDetailsYuLan.replace(src[1], res1.fileID);
+                controlIndex++;
+                if(controlIndex==arr.length){
+                  let info = {};
+                  info['category']=0;
+                  info['contentText']=that.data.newContentText;
+                  info['logo']=res.fileID;
+                  info['title']=that.data.newTitile;
+                  info['details']=newsDetailsYuLan;
+                  info['isHot']=0;
+                  info['reading']=900; 
+                  wx.cloud.callFunction({
+                    name: 'getNews',
+                    data: {
+                      conditions:info,
+                      functions: 'addInfo',  
+                    },
+                    success: res => {
+                      wx.hideLoading();
+                      console.log('曾加新闻成功')
+                    },
+                    fail: err => {
+                      console.log(err)
+                      wx.hideLoading();
+                    }
+                  })
+                } 
+              },
+              fail: err => {
+                console.log(err)
+                wx.hideLoading();
+              }
+            })   
+          }
+        },
+        fail: err => {
+          wx.hideLoading();
+        }
+      })  
+
+
+  },
+
+  setValue: function(e){
+    let name = e.currentTarget.dataset.argus;
+    this.setData({
+      product:{
+        ...this.data.product,
+        [name]: e.detail.value
+      }
+    })
+  },
+
+  typeItemChange: function(e){
+    let selecteds = e.currentTarget.dataset.json;
+    let typeItem = this.data.typeItem;
+    if(!selecteds.checked){
+      typeItem.forEach(o=>{
+        if(o.id==selecteds.id){
+          o.checked=true
+        }else{
+          o.checked=false
+        }
+      });
+      this.setData({
+        typeItem
+      })
+    }
+  },
+
+  isHotItemChange: function(e){
+    let selecteds = e.currentTarget.dataset.json;
+    let isHotItem = this.data.isHotItem;
+    if(!selecteds.checked){
+      isHotItem.forEach(o=>{
+        if(o.id==selecteds.id){
+          o.checked=true
+        }else{
+          o.checked=false
+        }
+      });
+      this.setData({
+        isHotItem
+      })
+    }
   }
 
 })

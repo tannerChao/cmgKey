@@ -85,14 +85,20 @@
 }
 .home-content-left{
     display: flex;
+    flex: 1
 }
 .home-content-left image{
-    height: 80px;
-    width: 100px;
+    height: 156rpx;
+    width: 156rpx;
 }
 .home-content-left text{
     font-size: 28rpx;
     margin: 0 0 0 10rpx;
+}
+.home-content-left-box{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 .home-content button{
     border: none;
@@ -302,4 +308,25 @@ form .section input{
     display: flex;
     background: #ffffff;
     padding: 0 20rpx;
+}
+.radio-group{
+    height: 24px;
+    display: flex;
+    align-items: center;
+}
+
+.radio-label, .radio-label-active {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 10rpx;
+}
+.radio-label image{
+    width: 32rpx;
+    height: 32rpx;
+    margin: 0 12rpx 0 0;
+}
+.radio-label-active image{
+    width: 32rpx;
+    height: 32rpx;
+    margin: 0 12rpx 0 0;
 }
