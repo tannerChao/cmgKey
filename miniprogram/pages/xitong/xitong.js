@@ -15,13 +15,16 @@ Page({
       {title:'公司信息',category: 4,database: 'company',dataWay:''},
     ],
 
-    product:{
+    productInfo:{
       title:'',
       content:'',
       modelNum:'',
       price:0,
 
     },
+    getProductDetailsYuLan:'',
+    productDetails:'',
+    productLogo: [],
 
     info:[],
     tabBarState: 0,
@@ -440,50 +443,70 @@ Page({
         wx.showToast({title:'产品价格不能为空',mask: true,icon: 'none'});
         return;
       }
+      if(this.data.product.productDetails==''){
+        wx.showToast({title:'产品详情不能为空',mask: true,icon: 'none'});
+        return;
+      }
 
       const cloudPath = moment().format('YYYY-MM-DD')+moment().get('seconds') + this.data.productLogo[0].match(/\.[^.]+?$/)[0];
       wx.showLoading({
         title: '加载中',
         mask: true
+      });
+
+      let isHotState= this.data.isHotItem.filter(o=>{
+        return o.checked
       })
+
+      let istypeItem =  this.data.typeItem.filter(o=>{
+        return o.checked
+      })
+
       const that = this;
       wx.cloud.uploadFile({
-        cloudPath:`image/product/${cloudPath}`,
-        filePath: this.data.newsLogo[0],
+        cloudPath:`image/text/${cloudPath}`,
+        filePath: this.data.productLogo[0],
         success: res => {
   
           let imgReg = /<img.*?(?:>|\/>)/gi;
           let srcReg = /src=[\'\"]?([^\'\"]*)[\'\"]?/i;
-          let arr = this.data.newsDetailsYuLan.match(imgReg); 
-          let newsDetailsYuLan = that.data.newsDetailsYuLan
+          let arr = that.data.productsDetailsYuLan.match(imgReg); 
+          let productsDetailsYuLan = that.data.productsDetailsYuLan
           let controlIndex = 0;
           for (let i = 0; i < arr.length; i++) {
             let src = arr[i].match(srcReg);
             let cloudChildPath = moment().format('YYYY-MM-DD')+moment().get('hours')+Math.ceil(Math.random()*1000)+moment().get('seconds') + src[1].match(/\.[^.]+?$/)[0];
             wx.cloud.uploadFile({
-              cloudPath:`image/new/${cloudChildPath}`,
+              cloudPath:`image/text/${cloudChildPath}`,
               filePath: src[1],
               success: res1 => {
-                newsDetailsYuLan=newsDetailsYuLan.replace(src[1], res1.fileID);
+                productsDetailsYuLan=productsDetailsYuLan.replace(src[1], res1.fileID);
                 controlIndex++;
                 if(controlIndex==arr.length){
                   let info = {};
-                  info['category']=0;
-                  info['contentText']=that.data.newContentText;
-                  info['logo']=res.fileID;
-                  info['title']=that.data.newTitile;
-                  info['details']=newsDetailsYuLan;
-                  info['isHot']=0;
-                  info['reading']=900; 
+                  info['fileid']=res.fileID;
+                  info['title']=that.data.productInfo.title;
+                  info['categoryText']=istypeItem[0].value;
+                  info['category']=istypeItem[0].id; 
+                  info['isHot']=isHotState[0].id; 
+                  info['content']=that.data.productInfo.content; 
+                  info['details']=productsDetailsYuLan;
+                  info['price']=that.data.productInfo.price;
+                  info['remaining']=99;
+                  info['sold']=99;
+                  info['modelNum']=that.data.productInfo.modelNum; 
+                  info['name']=that.data.productInfo.modelNum; 
+                  info['url']=''; 
+                  
                   wx.cloud.callFunction({
-                    name: 'getNews',
+                    name: 'getProduct',
                     data: {
                       conditions:info,
                       functions: 'addInfo',  
                     },
                     success: res => {
                       wx.hideLoading();
-                      console.log('曾加新闻成功')
+                      console.log('曾加产品成功')
                     },
                     fail: err => {
                       console.log(err)
@@ -491,6 +514,7 @@ Page({
                     }
                   })
                 } 
+                
               },
               fail: err => {
                 console.log(err)
@@ -509,9 +533,10 @@ Page({
 
   setValue: function(e){
     let name = e.currentTarget.dataset.argus;
+    console.log(name,e.detail.value);
     this.setData({
-      product:{
-        ...this.data.product,
+      productInfo:{
+        ...this.data.productInfo,
         [name]: e.detail.value
       }
     })
@@ -549,6 +574,50 @@ Page({
         isHotItem
       })
     }
-  }
+  },
+
+  editorProductDetails: function(event) {
+    this.getProductDetailsYuLan(event.detail.value)
+    this.setData({
+      productDetails: event.detail.value,
+    })
+
+  },
+
+  getProductDetailsYuLan: function(value){
+    let array = value.split('&Br'); 
+    let html=''
+    console.log(array)
+    array.forEach(o => {
+      html=html+`<div style="${o.indexOf('<img')>-1?'':'text-indent:2em;'}text-align:left;font-size:0">${o}</div>`;
+    });
+    this.setData({
+      productsDetailsYuLan: html
+    })
+
+    var that = this;
+    var article = html; 
+    WxParse.wxParse('product', 'html', article, that, 5);
+
+  },
+
+  getProductImage: function(){
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
+      sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
+      success: res => {
+        const images = this.data.chooseImage;
+        images[0]=res.tempFilePaths[0];
+        console.log(res)
+        // 限制最多只能留下3张照片
+        this.getProductDetailsYuLan(`${this.data.productDetails}&Br<img src="${images[0]}" class='newImage' width='100%' alt="w">&Br`)
+        this.setData({
+          productDetails: `${this.data.productDetails}&Br<img src="${images[0]}" class='newImage' width='100%' alt="w">&Br`, 
+        });
+        
+      }
+    })
+    
+  },
 
 })

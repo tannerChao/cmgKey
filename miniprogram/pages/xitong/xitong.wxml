@@ -106,6 +106,20 @@
                                         </view>
                                     </view>
                                 </view>
+                                <view class="section">
+                                    <view class='news-editor-contaner'>
+                                        <view   class="editor-image">
+                                            <image src="../../images/common/add-image-2.png" bindtap="getProductImage"></image>
+                                        </view>
+                                        <textarea placeholder="请上传" value="{{productDetails}}" bindinput="editorProductDetails" maxlength="5000" auto-height="true"/>   
+                                    </view>    
+                                </view>
+                                <view class="section-yulan">
+                                    <title title="预览" class='conpoment-title'></title>
+                                    <view class="news-editor-yulan">
+                                        <template is="wxParse" data="{{wxParseData:product.nodes}}"/>
+                                    </view>
+                                </view>
                                 <view class="btn-area">
                                     <button class="bg_blue" form-type="submit" bindtap="productSubmit">提交</button>
                                 </view>

@@ -51,7 +51,6 @@ class Product {
     const db = cloud.database();
     return await db.collection('text').add({
       data: {
-        description: 'learn cloud database',
         ...info
       },
       success: res=> {

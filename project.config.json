@@ -13,7 +13,7 @@
 	},
 	"appid": "wx3034655acf0b3188",
 	"projectname": "cmgkey",
-	"libVersion": "2.6.4",
+	"libVersion": "2.6.5",
 	"condition": {
 		"search": {
 			"current": -1,
